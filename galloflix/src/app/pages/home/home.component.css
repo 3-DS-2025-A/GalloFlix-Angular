@@ -1,0 +1,74 @@
+#carouselBanner {
+    height: 100vh;
+}
+
+#carouselBanner .carousel-item img {
+    height: 100vh;
+    object-fit: cover;
+    cursor: pointer;
+}
+
+.carousel-inner .carousel-caption {
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(5px);
+    width: 100%;
+    left: 0;
+    padding-left: 100px;
+    padding-right: 100px;
+}
+
+.carousel-inner .carousel-caption h3 {
+    color: #e50914;
+    font-weight: bolder;
+    font-size: 32px;
+}
+
+.carousel-inner .carousel-caption p {
+    font-size: 20px;
+}
+
+@media only screen and (max-width: 500px) {
+    .carousel-inner .carousel-caption {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+
+    .carousel-inner .carousel-caption h3 {
+        font-size: 20px;
+    }
+}
+
+.rowposter {
+    display: flex;
+    overflow-y: hidden;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    cursor: default;
+    padding: 20px;
+    -webkit-overflow-scrolling: touch;
+    will-change: transform;
+}
+
+.rowposter a {
+    cursor: pointer;
+}
+
+.rowposter::-webkit-scrollbar {
+    display: none;
+}
+
+.rowposter a img {
+    margin-right: 10px;
+    border-radius: 20px;
+    box-sizing: content-box;
+    transition: transform 450ms;
+    max-height: 300px;
+    object-fit: contain;
+    backface-visibility: hidden;
+    transform: translateZ(0);
+}
+
+.rowposter a img:hover {
+    transform: scale(1.12);
+    z-index: 900;
+}

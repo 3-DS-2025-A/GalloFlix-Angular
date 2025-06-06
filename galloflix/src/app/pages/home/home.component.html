@@ -1,1 +1,54 @@
-<p>home works!</p>
+<div class="container-fluid p-0">
+  <div id="carouselBanner" class="carousel slide carousel-fade" data-bs-ride="carousel">
+    <div class="carousel-inner">
+
+      <div class="carousel-item" *ngFor="let b of bannerResults; let i = index"
+        [ngClass]="{active:i===0}" data-bs-interval="8000"
+      >
+        <img src="https://image.tmdb.org/t/p/original/{{ b.backdrop_path }}"
+          class="d-block w-100 opacity-75" alt="Capa de Mídia"
+          routerLink="/details/{{b.media_type}}/{{b.id}}">
+        <div class="carousel-caption">
+          <h3>{{ b.title ?? b.name }}</h3>
+          <p class="d-none d-md-block">{{ b.overview }}</p>
+        </div>
+      </div>
+
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselBanner" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselBanner" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
+</div>
+
+<div class="container my-5">
+  <div class="row mb-5">
+    <h4 class="text-white">Filmes em Destaque</h4>
+    <div class="rowposter mt-1" #trendingMovies autoScroll>
+      <a routerLink="/details/{{m.media_type}}/{{m.id}}" *ngFor="let m of trendingMovieResults">
+        <img src="https://image.tmdb.org/t/p/w500/{{ m.poster_path }}" alt="Capa do Filme">
+      </a>
+    </div>
+  </div>
+  <div class="row mb-5">
+    <h4 class="text-white">Séries em Destaque</h4>
+    <div class="rowposter mt-1" #trendingSeries autoScroll>
+      <a routerLink="/details/{{m.media_type}}/{{m.id}}" *ngFor="let m of trendingSerieResults">
+        <img src="https://image.tmdb.org/t/p/w500/{{ m.poster_path }}" alt="Capa da Serie">
+      </a>
+    </div>
+  </div>
+  <div class="row mb-5">
+    <h4 class="text-white">Filmes de Ações Mais Populares</h4>
+    <div class="rowposter mt-1" #popularActionMovie autoScroll>
+      <a routerLink="/details/movie/{{m.id}}" *ngFor="let m of popularActionMovieResults">
+        <img src="https://image.tmdb.org/t/p/w500/{{ m.poster_path }}" alt="Capa do Filme">
+      </a>
+    </div>
+  </div>
+</div>

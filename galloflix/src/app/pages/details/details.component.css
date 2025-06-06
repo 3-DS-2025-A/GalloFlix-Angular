@@ -1,0 +1,27 @@
+#detalhes p {
+    font-size: 18px;
+}
+
+.card {
+    color: white;
+    background-color: black;
+    border: 1px white solid;
+    cursor: pointer;
+    border-radius: 20px;
+}
+
+.card-img-top {
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    height: 350px;
+    object-fit: cover;
+    width: 100%;
+}
+
+.card-title {
+    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 5px;
+}
