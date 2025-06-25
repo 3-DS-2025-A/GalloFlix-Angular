@@ -19,13 +19,27 @@ export class SearchComponent {
   ) {}
 
   result: any;
+  resultsList: any[] = [];
   searchQuery: string = '';
+  currentPage: number = 1;
+  totalPages: number = 0;
 
   ngOnInit(): void {
+    // Quando a rota carregar ou mudar
+    this.route.queryParams.subscribe((params) => {
+      this.searchQuery = params['query'] || '';
+      this.currentPage = parseInt(params['page'], 10) || 1;
 
+      if (this.searchQuery) {
+        this.searchMedia();
+      }
+    })
   }
 
   onSearch(): void {
+    this.currentPage = 1;
+    this.resultsList = [];
+    this.updateRoute();
     this.searchMedia();
   }
 
@@ -33,8 +47,35 @@ export class SearchComponent {
     const query = this.searchQuery.trim();
     if (!query) return;
 
-    this.service.searchMedia(query, 1).subscribe(result => {
-      console.log(result)
+    this.service.searchMedia(query, this.currentPage).subscribe(result => {
+      //console.log(result)
+      this.result = result;
+      this.totalPages = result.total_pages;
+
+      if (this.currentPage === 1) {
+        this.resultsList = result.results;
+      } else {
+        this.resultsList = [...this.resultsList, ...result.results];
+      }
     })
   }
+
+  // Aumenta a página e carrega mais resultados
+  loadMore(): void {
+    if (this.currentPage < this.totalPages) {
+      this.currentPage++;
+      this.updateRoute();
+      this.searchMedia();
+    }
+  }
+
+  // Atualiza a URL com os novos parâmetros
+  updateRoute(): void {
+    this.router.navigate([], {
+      relativeTo: this.route,
+      queryParams: { query: this.searchQuery, page: this.currentPage},
+      queryParamsHandling: 'merge',
+    })
+  }
+
 }
