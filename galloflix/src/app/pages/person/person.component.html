@@ -1,1 +1,16 @@
-<p>person works!</p>
+<div class="container my-5 p-5">
+    <div class="row">
+        <div class="col-md-3">
+            <img class="w-100 rounded-5" alt="{{person.name}}"
+            [src]="person.profile_path ?
+                'https://image.tmdb.org/t/p/w500/' + person.profile_path :
+                '/img/no-photo-cast.png'">
+        </div>
+        <div class="col-md-9 text-white">
+            <h1 class="fs-1 text-danger mb-4">{{person.name}}</h1>
+            <h4 class="mb-4">Local de Nascimento: {{person.place_of_birth}}</h4>
+            <h4 class="mb-4">Data de Nascimento: {{(person.birthday) | date: 'dd/MM/yyyy'}}</h4>
+            <p class="fs-5">{{person.biography ? person.biography : "Biografia não disponível"}}</p>
+        </div>
+    </div>
+</div>

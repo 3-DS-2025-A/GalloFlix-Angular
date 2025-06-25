@@ -1,1 +1,23 @@
-<p>search works!</p>
+<div class="container my-5 py-5 px-lg-5 px-3">
+    <form id="pesquisar" class="d-flex position-relative" (submit)="onSearch()">
+        <input type="text" name="search" placeholder="Pesquisar..." [(ngModel)]="searchQuery">
+        <button class="position-absolute">
+            <i class="bi bi-search"></i>
+        </button>
+    </form>
+
+    <h5 id="qtdeResultados" class="text-white my-4">
+        Resultados Encontrados (0)
+    </h5>
+
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-3">
+
+    </div>
+    <div class="row">
+        <div class="col text-center my-5">
+            <button class="btn btn-lg btn-danger text-white px-5 rounded-5">
+                Exibir Mais
+            </button>
+        </div>
+    </div>
+</div>
